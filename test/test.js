@@ -1,4 +1,4 @@
-let { Vector, Matrix } = require('./matrix');
+let { Matrix, Vector } = require('../build/matrix');
 
 //new Matrix
 let a = new Matrix();

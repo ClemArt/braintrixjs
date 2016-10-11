@@ -1,7 +1,6 @@
+import { _ } from 'underscore';
 
-let _ = require('underscore');
-
-module.exports.Matrix = class Matrix {
+class Matrix {
     constructor(n=0,m=0,valueArray=[]){
         //built by columns
         if(valueArray.length === m){
@@ -45,7 +44,7 @@ module.exports.Matrix = class Matrix {
     }
 }
 
-module.exports.Vector = class Vector {
+class Vector {
     constructor(values){
         this._values = values;
     }
@@ -54,3 +53,5 @@ module.exports.Vector = class Vector {
         return this._values.length;
     }
 }
+
+export {Matrix, Vector};
