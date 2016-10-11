@@ -73,6 +73,20 @@ let netBack1 = new Network(2, 3, 3);
 let backIn = [1,2];
 let backOut = [0.5, 0.1, 0.3];
 let outBack1 = netBack1.forward(backIn);
-debugger;
 let error1 = netBack1.backpropagate(backIn, backOut);
 console.log('Backpropagate one sample', outBack1, error1);
+
+//Learn batch
+let samples = [
+    [[1,0],[0,0,1]],
+    [[0,1],[1,0,0]],
+    [[-1,-1],[0,1,0]]
+];
+let netToTrain = new Network(2, 3);
+console.log('Net to train\'s chromosomes', netToTrain.chromosome);
+console.log('Net to train\'s result on 1', netToTrain.forward([1,0]));
+netToTrain.learnBatch(samples, 1, 1000);
+console.log('Net to train\'s chromosomes after train', netToTrain.chromosome);
+console.log('Net to train\'s result on 1 after train', netToTrain.forward([1,0]));
+console.log('Net to train\'s result on 2 after train', netToTrain.forward([0,1]));
+console.log('Net to train\'s result on 3 after train', netToTrain.forward([-1,-1]));

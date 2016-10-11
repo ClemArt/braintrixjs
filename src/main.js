@@ -168,13 +168,17 @@ class Network {
     *   repeat: Integer (default 1) Number of repetitions over the batch of samples (multiple pass)
     */
     learnBatch(samples, learningRate=0.1, repeat=1){
+        //opposite of learning rate, just the minus sign of the gradient descent applied
+        learningRate *= -1;
         while(repeat){
             repeat--;
-            for(let sample of samples){
-                let input = sample[0];
-                let expected = sample[1];
-
-
+            for(let [input, expected] of samples){
+                let [w, b] = this.backpropagate(input, expected);
+                for(let i=0; i<this._layers.length; i++){
+                    let cLayer = this._layers[i];
+                    cLayer._weights = cLayer._weights.add(w[i].mult(learningRate));
+                    cLayer._bias = cLayer._bias.add(b[i].mult(learningRate));
+                }
             }
         }
     }
