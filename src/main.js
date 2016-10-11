@@ -11,7 +11,7 @@ import { Matrix, Vector } from './matrix';
 *       activationPrime: function(Number) (default Network.sigmoidPrime) Derivative of the activation function, used for gradient descent
 */
 class Layer {
-    constructor(NBefore=2, N=2, weight=Matrix.randomMatrix(2,2), bias=Vector.randomVector(2), activation=Network.sigmoid, activationPrime=Network.sigmoidPrime){
+    constructor(NBefore=2, N=2, weight=Matrix.randomMatrix(N, NBefore), bias=Vector.randomVector(N), activation=Network.sigmoid, activationPrime=Network.sigmoidPrime){
         this._weights = weight;
         this._bias = bias;
         this._activation;

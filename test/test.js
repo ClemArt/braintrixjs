@@ -33,3 +33,8 @@ let net1 = new Network(2, 3, 3);
 let dataFeed = [1,1];
 let dataOut = net1.forward(dataFeed);
 console.log('Random network out', dataOut);
+
+let net2 = new Network(3, 1, 6, [12, 4]);
+let dataFeed2 = [1,1,-3];
+let dataOut2 = net2.forward(dataFeed2);
+console.log('Random complex network out', dataOut2);
