@@ -52,6 +52,10 @@ class Matrix {
         return this._values;
     }
 
+    get length(){
+        return this._values.length;
+    }
+
     static randomMatrix(n,m){
         let output = [];
         for(let i=0; i<m*n; i++){
@@ -104,10 +108,11 @@ class Vector {
     *   Apply a function to all elements of the vector
     */
     apply(func){
+        let output = [];
         for(let i=0; i<this.length; i++){
-            this._values[i] = func(this.v(i));
+            output.push(func(this.v(i)));
         }
-        return this;
+        return new Vector(output);
     }
 
     /**
