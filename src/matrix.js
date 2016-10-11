@@ -41,7 +41,7 @@ class Matrix {
     static randomMatrix(n,m){
         let output = [];
         for(let i=0; i<m*n; i++){
-            output.push(Math.random());
+            output.push(random());
         }
         return new Matrix(n,m,output);
     }
@@ -104,7 +104,7 @@ class Vector {
     static randomVector(n){
         let output = [];
         for(let i=0; i<n; i++){
-            output.push(Math.random());
+            output.push(random());
         }
         return new Vector(output);
     }
@@ -119,3 +119,7 @@ class Vector {
 }
 
 export {Matrix, Vector};
+
+function random(){
+    return Math.random() * 2 - 1;
+}
