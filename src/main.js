@@ -8,10 +8,9 @@ import { Matrix, Vector } from './matrix';
 *       weight: Matrix(N, NBefore) (default random Matrix(2,2)) Initial matrix of weights
 *       bias: Vector(N) (default random Vector(2)) Initial bias of the neurons
 *       activation: function(Number) (default Network.sigmoid) Activation function of the neurons, must be derivable once
-*       activationPrime: function(Number) (default Network.sigmoidPrime) Derivative of the activation function, used for gradient descent
 */
 class Layer {
-    constructor(NBefore=2, N=2, weight=Matrix.randomMatrix(N, NBefore), bias=Vector.randomVector(N), activation=Network.sigmoid, activationPrime=Network.sigmoidPrime){
+    constructor(NBefore=2, N=2, weight=Matrix.randomMatrix(N, NBefore), bias=Vector.randomVector(N), activation=Network.sigmoid){
         this._weights = weight;
         this._bias = bias;
         this._activation;
