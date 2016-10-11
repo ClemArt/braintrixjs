@@ -40,26 +40,22 @@ var Matrix = function () {
     }, {
         key: "dot",
         value: function dot(vector) {
-            vector = Matrix.convertInput(vector);
+            vector = Vector.convertInput(vector);
             this.checkVectorMult(vector);
 
             var output = [];
-            for (var i = 0; i < this._n; i++) {}
+            for (var i = 0; i < this._n; i++) {
+                var row = new Vector(this._values.slice(i * this._m, (i + 1) * this._m));
+                output.push(row.dot(vector));
+            }
+
+            return new Vector(output);
         }
     }, {
         key: "checkVectorMult",
         value: function checkVectorMult(vector) {
             if (this._m !== vector.length) {
                 throw "Vector of dimension " + vector.length + ' does not match matrix dimension ' + this._m;
-            }
-        }
-    }], [{
-        key: "convertInput",
-        value: function convertInput(values) {
-            if (values.constructor === Array) {
-                return new Vector(values);
-            } else {
-                return values;
             }
         }
     }]);
@@ -75,9 +71,41 @@ var Vector = function () {
     }
 
     _createClass(Vector, [{
+        key: "dot",
+        value: function dot(vector) {
+            vector = Vector.convertInput(vector);
+            this.checkVectorDot(vector);
+
+            var output = 0;
+            for (var i = 0; i < this.length; i++) {
+                output += this.v(i) * vector.v(i);
+            }
+        }
+    }, {
+        key: "v",
+        value: function v(i) {
+            return this._values[i];
+        }
+    }, {
+        key: "checkVectorDot",
+        value: function checkVectorDot(vector) {
+            if (this.length !== vector.length) {
+                throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;
+            }
+        }
+    }, {
         key: "length",
         get: function get() {
             return this._values.length;
+        }
+    }], [{
+        key: "convertInput",
+        value: function convertInput(values) {
+            if (values.constructor === Array) {
+                return new Vector(values);
+            } else {
+                return values;
+            }
         }
     }]);
 

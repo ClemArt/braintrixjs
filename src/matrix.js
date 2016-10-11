@@ -20,18 +20,52 @@ class Matrix {
     }
 
     dot(vector){
-        vector = Matrix.convertInput(vector);
+        vector = Vector.convertInput(vector);
         this.checkVectorMult(vector);
 
         let output = [];
         for(let i=0; i<this._n; i++){
-
+            let row = new Vector(this._values.slice(i * this._m, (i+1) * this._m));
+            output.push(row.dot(vector));
         }
+
+        return new Vector(output);
     }
 
     checkVectorMult(vector){
         if(this._m !== vector.length){
             throw "Vector of dimension " + vector.length + ' does not match matrix dimension ' + this._m;
+        }
+    }
+
+}
+
+class Vector {
+    constructor(values){
+        this._values = values;
+    }
+
+    dot(vector){
+        vector = Vector.convertInput(vector);
+        this.checkVectorDot(vector);
+
+        let output = 0;
+        for(let i=0; i<this.length; i++){
+            output += this.v(i) * vector.v(i);
+        }
+    }
+
+    v(i){
+        return this._values[i];
+    }
+
+    get length(){
+        return this._values.length;
+    }
+
+    checkVectorDot(vector){
+        if(this.length !== vector.length){
+            throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;
         }
     }
 
@@ -41,16 +75,6 @@ class Matrix {
         } else {
             return values;
         }
-    }
-}
-
-class Vector {
-    constructor(values){
-        this._values = values;
-    }
-
-    get length(){
-        return this._values.length;
     }
 }
 
