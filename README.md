@@ -57,5 +57,10 @@ This chromosome can be used to rebuild a clone of the layer.
 	#	Import
 	net = new Chromosome(params, chromosome);
 
+# To dig a little deeper
+The default network uses a sigmoid function and it's derivative. This maps the output of the network to the ]0, 1[ interval.
+It's possible (and probably recommended) to dig into the code and replace the activation and cost functions. Thus you can fine tune the network to your application's needs.
+I recommend you read the article cited below, as it's a really good and progressive exploration of all the mathematics behind that kind of algorithms.
+
 # Acknowledgement
 Thanks to Michael Nielsen and his work at http://neuralnetworksanddeeplearning.com/index.html to help me understand the mathematics behind the neural network. (Michael A. Nielsen, "Neural Networks and Deep Learning", Determination Press, 2015)
