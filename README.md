@@ -46,6 +46,15 @@ Forward an input feed through the network with one function
 	#   inputData: Array or Vector, size of IDim
 	forward(inputData);
 
+## Learn
+Provides samples of pairs input/output and the network will adapt to fit them
+
+	#	Learn from a batch of sample with backpropagation
+	#   samples: Array[Input, Output], Input & Output as Vectors or Arrays, Learning sample composed of the input and the expected output
+	#   learningRate: Number (default 0.1) Factor applied as a gradient step toward optimization
+	#   repeat: Integer (default 1) Number of repetitions over the batch of samples (multiple pass)
+	learnBatch(samples, learningRate=0.1, repeat=1)
+
 ## Export and Inport
 You can export the network as a chromosome, which represents all the weights and bias in all the successive layers.
 This chromosome can be used to rebuild a clone of the layer.
