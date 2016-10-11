@@ -53,6 +53,8 @@ class Vector {
         for(let i=0; i<this.length; i++){
             output += this.v(i) * vector.v(i);
         }
+
+        return output;
     }
 
     v(i){

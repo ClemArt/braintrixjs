@@ -80,6 +80,8 @@ var Vector = function () {
             for (var i = 0; i < this.length; i++) {
                 output += this.v(i) * vector.v(i);
             }
+
+            return output;
         }
     }, {
         key: "v",
