@@ -38,3 +38,11 @@ let net2 = new Network(3, 1, 6, [12, 4]);
 let dataFeed2 = [1,1,-3];
 let dataOut2 = net2.forward(dataFeed2);
 console.log('Random complex network out', dataOut2);
+
+let net3 = new Network(12, 1);
+let dataFeed3 = [1, 1, -3,
+                0, 4, 5,
+                1, -5, 6,
+                3, -4, 0];
+let dataOut3 = net3.forward(dataFeed3);
+console.log('Random single perceptron', dataOut3);
