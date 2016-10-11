@@ -3,7 +3,7 @@ Simple js neural network using internal matrix operations.
 Uses ES6 features, with babel for compatibility.
 
 # Dependencies
-* UnderscoreJS
+* Native Math package (random & exp)
 
 # Installation
 	#Install dependencies

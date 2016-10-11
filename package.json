@@ -24,9 +24,7 @@
     "url": "https://github.com/ClemArt/braintrixjs/issues"
   },
   "homepage": "https://github.com/ClemArt/braintrixjs#readme",
-  "dependencies": {
-    "underscore": "^1.8.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-preset-es2015": "^6.16.0"

@@ -1,11 +1,5 @@
-import { _ } from 'underscore';
-
 class Matrix {
     constructor(n=0,m=0,valueArray=[]){
-        //built by rows
-        if(valueArray.length === n){
-            valueArray = _.flatten(valueArray);
-        }
         //Unwrapped array
         if(valueArray.length !== n*m){
             throw "Values array must be of lenght n*m";
