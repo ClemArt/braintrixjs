@@ -2,7 +2,8 @@
 Simple js neural network using internal matrix operations
 
 # Installation
-	Coming soon!
+	#Install dependencies
+	npm install
 
 # Usage
 	Coming soon!
