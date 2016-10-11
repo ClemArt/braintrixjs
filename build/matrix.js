@@ -74,7 +74,7 @@ var Vector = function () {
         key: "dot",
         value: function dot(vector) {
             vector = Vector.convertInput(vector);
-            this.checkVectorDot(vector);
+            this.checkVectorLength(vector);
 
             var output = 0;
             for (var i = 0; i < this.length; i++) {
@@ -84,13 +84,26 @@ var Vector = function () {
             return output;
         }
     }, {
+        key: "add",
+        value: function add(vector) {
+            vector = Vector.convertInput(vector);
+            this.checkVectorLength(vector);
+
+            var output = [];
+            for (var i = 0; i < this.length; i++) {
+                output.push(this.v(i) + vector.v(i));
+            }
+
+            return new Vector(output);
+        }
+    }, {
         key: "v",
         value: function v(i) {
             return this._values[i];
         }
     }, {
-        key: "checkVectorDot",
-        value: function checkVectorDot(vector) {
+        key: "checkVectorLength",
+        value: function checkVectorLength(vector) {
             if (this.length !== vector.length) {
                 throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;
             }

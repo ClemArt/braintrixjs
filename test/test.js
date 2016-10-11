@@ -12,6 +12,12 @@ try {
     console.log(err);
 }
 
+//Add vectors
+let vadd1 = new Vector([1,2]);
+let vadd2 = new Vector([2,3]);
+let addV12 = vadd1.add(vadd2);
+console.log(addV12);
+
 //dot product
 let v1 = new Vector([1,1]);
 let cross = v1.dot(v1);

@@ -47,7 +47,7 @@ class Vector {
 
     dot(vector){
         vector = Vector.convertInput(vector);
-        this.checkVectorDot(vector);
+        this.checkVectorLength(vector);
 
         let output = 0;
         for(let i=0; i<this.length; i++){
@@ -55,6 +55,18 @@ class Vector {
         }
 
         return output;
+    }
+
+    add(vector){
+        vector = Vector.convertInput(vector);
+        this.checkVectorLength(vector);
+
+        let output = [];
+        for(let i=0; i<this.length; i++){
+            output.push(this.v(i) + vector.v(i));
+        }
+
+        return new Vector(output);
     }
 
     v(i){
@@ -65,7 +77,7 @@ class Vector {
         return this._values.length;
     }
 
-    checkVectorDot(vector){
+    checkVectorLength(vector){
         if(this.length !== vector.length){
             throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;
         }
