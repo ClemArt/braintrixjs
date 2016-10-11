@@ -1,10 +1,17 @@
 # braintrixjs
-Simple js neural network using internal matrix operations
+Simple js neural network using internal matrix operations.
+Uses ES6 features, with babel for compatibility.
 
 # Installation
 	#Install dependencies
 	npm install
 
+	#Build the src from ES6 with Babel
+	#Output to build/
+	npm run babelify
+
+	#Build & run (small) tests
+	npm run test
 # Usage
 	Coming soon!
 
