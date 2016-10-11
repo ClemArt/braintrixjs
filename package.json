@@ -1,0 +1,25 @@
+{
+  "name": "braintrixjs",
+  "version": "0.0.1",
+  "description": "A simple matrix neural network",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClemArt/braintrixjs.git"
+  },
+  "keywords": [
+    "neural",
+    "network",
+    "machine",
+    "learning"
+  ],
+  "author": "Clement Artaud",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ClemArt/braintrixjs/issues"
+  },
+  "homepage": "https://github.com/ClemArt/braintrixjs#readme"
+}
