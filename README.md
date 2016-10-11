@@ -2,6 +2,9 @@
 Simple js neural network using internal matrix operations.
 Uses ES6 features, with babel for compatibility.
 
+# Dependencies
+* UnderscoreJS
+
 # Installation
 	#Install dependencies
 	npm install
