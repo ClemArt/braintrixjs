@@ -29,6 +29,23 @@ class Matrix {
         return new Vector(output);
     }
 
+    add(matrix){
+        this.checkMatrixDim(matrix);
+        let output = [];
+        for(let i=0; i<this.length; i++){
+            output.push(this.v(Math.floor(i/this._m), i % this._m) + matrix.v(Math.floor(i/this._m), i % this._m));
+        }
+        return new Matrix(this._n, this._m, output);
+    }
+
+    mult(num){
+        let output = [];
+        for(let i=0; i<this.length; i++){
+            output.push(this.v(Math.floor(i/this._m), i % this._m) * num);
+        }
+        return new Matrix(this._n, this._m, output);
+    }
+
     /**
     *   Return the transposed self
     */
@@ -44,7 +61,13 @@ class Matrix {
 
     checkVectorMult(vector){
         if(this._m !== vector.length){
-            throw "Vector of dimension " + vector.length + ' does not match matrix dimension ' + this._m;
+            throw "Vector of dimension " + vector.length + ' does not match Matrix dimension ' + this._m;
+        }
+    }
+
+    checkMatrixDim(matrix){
+        if(this._m !== matrix._m || this._n !== matrix._n){
+            throw "Matrix of dimension " + matrix._n + ',' + matrix._m + ' does not match Matrix dimension ' + this._n + ',' + this._m;
         }
     }
 
