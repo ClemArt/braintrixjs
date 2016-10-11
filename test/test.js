@@ -13,6 +13,12 @@ try {
     console.log('Matrix creation exception', err);
 }
 
+//Transpose
+let trans = new Matrix(2,3,[1,2,3,4,5,6]);
+let transposed = trans.transpose();
+console.log('Pretransposed Matrix', trans);
+console.log('Transposed Matrix', transposed);
+
 //Add vectors
 let vadd1 = new Vector([1,2]);
 let vadd2 = new Vector([2,3]);

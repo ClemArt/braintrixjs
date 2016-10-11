@@ -10,9 +10,12 @@ class Matrix {
     }
 
     v(i,j){
-        return _this.valueArray[i * this_.m + j];
+        return this._values[i * this._m + j];
     }
 
+    /**
+    *   Multiply Matrix with a Vector
+    */
     dot(vector){
         vector = Vector.convertInput(vector);
         this.checkVectorMult(vector);
@@ -24,6 +27,19 @@ class Matrix {
         }
 
         return new Vector(output);
+    }
+
+    /**
+    *   Return the transposed self
+    */
+    transpose(){
+        let transposeValues = [];
+        for(let j=0; j<this._m; j++){
+            for(let i=0; i<this._n; i++){
+                transposeValues.push(this.v(i,j));
+            }
+        }
+        return new Matrix(this._m, this._n, transposeValues);
     }
 
     checkVectorMult(vector){
