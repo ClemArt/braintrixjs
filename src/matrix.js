@@ -2,8 +2,8 @@ import { _ } from 'underscore';
 
 class Matrix {
     constructor(n=0,m=0,valueArray=[]){
-        //built by columns
-        if(valueArray.length === m){
+        //built by rows
+        if(valueArray.length === n){
             valueArray = _.flatten(valueArray);
         }
         //Unwrapped array
