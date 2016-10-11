@@ -100,6 +100,51 @@ class Network {
     }
 
     /**
+    *   Backpropagate a single sample throught the network
+    *   Record the error of each layer
+    *   Output the cost differential on each weight/bias
+    *   input: Array[Number] or Vector, Input data for the sample
+    *   expected: Array[Number] or Vector, expected output of the training sample
+    */
+    backpropagate(input, expected){
+        expected = Vector.convertInput(expected);
+        let L = this._layers.length;
+        let deltas = [];
+        let output = this.forward(input);
+
+        //Compute the gradient of the last layer error
+        let gradient = [];
+        for(let i=0; i<output.length; i++){
+            gradient.push(this._costFunctionPrime(output.v(i), expected.v(i)));
+        }
+        gradient = new Vector(gradient);
+
+        //Last layer delta
+        let lastLayer = this._layers[this._layers.length - 1];
+        let actiPrime = lastLayer._zOutput.apply(lastLayer._activationFunctionPrime);
+        deltas.push(gradient.hadamard(actiPrime));
+
+        //Other layers
+        for(let k=2; k<=L; k++){
+            let currentError = this._layers[L-k+1]._weights.transpose().dot(deltas[k-2]);
+            let currentActiPrime = this._layers[L-k]._zOutput.apply(this._layers[L-k]._activationFunctionPrime);
+            deltas.push(currentError.hadamard(currentActiPrime));
+        }
+
+        return deltas;
+    }
+
+    /**
+    *   Learn from a batch of sample with backpropagation
+    *   samples: Array[Input, Output], Input & Output as Vectors or Arrays, Learning sample composed of the input and the expected output
+    *   learningRate: Number (default 0.1) Factor applied as a gradient step toward optimization
+    *   repeat: Integer (default 1) Number of repetitions over the batch of samples (multiple pass)
+    */
+    learnBatch(samples, learningRate=0.1, repeat=1){
+        
+    }
+
+    /**
     *   Return the chromosomic representation of the network
     *   Chromosome = Array[weights of layer k as Array, bias of layer k as Array], k from input to output;
     */
