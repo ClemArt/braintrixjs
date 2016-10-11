@@ -49,6 +49,7 @@ class Layer {
 *       NInput: Integer (required) Number of inputs neurons in the first layer
 *       NOutput: Integer (default 0) Number of output neurons in the last layer
 *       NHidden: Array[Integer] (default []) List of the number of neurons in each successive hidden layer (from Input to Output)
+*       chromosome: Chromosome [see get chromosome] (optional) Chromosome to use to initialize the network
 */
 class Network {
     constructor(IDim, NInput, NOutput=0, NHidden=[], chromosome){
@@ -88,6 +89,7 @@ class Network {
     /**
     *   Forward function, main purpose of the network
     *   Forward the input feed through all the layers and returns the output
+    *   inputData: Array or Vector, size of IDim
     */
     forward(inputData){
         let currentActivation = inputData;
