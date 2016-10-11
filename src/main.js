@@ -26,7 +26,7 @@ class Layer {
     */
     forward(input){
         this._zOutput = this._weights.dot(input).add(this._bias);
-        return activate(this._zOutput);
+        return this.activate(this._zOutput);
     }
     activate(zOutput){
         this._activation = zOutput.apply(this._activationFunction);
@@ -51,6 +51,26 @@ class Network {
         }
 
         this._layers = [];
+        //First layer is special
+        this._layers.push(new Layer(IDim, NInput));
+        //Next layers
+        for(let i=1; i<neurons.length; i++){
+            this._layers.push(new Layer(neurons[i-1], neurons[i]));
+        }
+
+        this._costFunctionPrime = Network.quadraticCostPrime;
+    }
+
+    /**
+    *   Forward function, main purpose of the network
+    *   Forward the input feed through all the layers and returns the output
+    */
+    forward(inputData){
+        let currentActivation = inputData;
+        for(let currentLayer of this._layers){
+            currentActivation = currentLayer.forward(currentActivation);
+        }
+        return currentActivation;
     }
 
     static sigmoid(a){
@@ -65,3 +85,5 @@ class Network {
         return (out - tgt);
     }
 }
+
+export { Network }
