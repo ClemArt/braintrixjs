@@ -32,6 +32,14 @@ class Layer {
         this._activation = zOutput.apply(this._activationFunction);
         return this._activation;
     }
+
+    /**
+    *   Return the chromosomic representation of the layer
+    *   Chromosome = [weights as Array, bias as Array];
+    */
+    get chromosome(){
+        return [this._weights.val, this._bias.val];
+    }
 }
 
 /**
@@ -43,7 +51,7 @@ class Layer {
 *       NHidden: Array[Integer] (default []) List of the number of neurons in each successive hidden layer (from Input to Output)
 */
 class Network {
-    constructor(IDim, NInput, NOutput=0, NHidden=[]){
+    constructor(IDim, NInput, NOutput=0, NHidden=[], chromosome){
         //Lets build the network
         let neurons = [NInput, ...NHidden];
         if(NOutput){
@@ -51,11 +59,27 @@ class Network {
         }
 
         this._layers = [];
-        //First layer is special
-        this._layers.push(new Layer(IDim, NInput));
-        //Next layers
-        for(let i=1; i<neurons.length; i++){
-            this._layers.push(new Layer(neurons[i-1], neurons[i]));
+
+        //Random input, no chromosome definition
+        if(!chromosome){
+            //First layer is special
+            this._layers.push(new Layer(IDim, NInput));
+            //Next layers
+            for(let i=1; i<neurons.length; i++){
+                this._layers.push(new Layer(neurons[i-1], neurons[i]));
+            }
+        } else {
+            //First layer is special
+            this._layers.push(new Layer(IDim, NInput, new Matrix(NInput, IDim, chromosome[0][0]), new Vector(chromosome[0][1])));
+            //Next layers
+            for(let i=1; i<neurons.length; i++){
+                this._layers.push(new Layer(
+                    neurons[i-1],
+                    neurons[i],
+                    new Matrix(neurons[i], neurons[i-1], chromosome[i][0]),
+                    new Vector(chromosome[i][1])
+                ));
+            }
         }
 
         this._costFunctionPrime = Network.quadraticCostPrime;
@@ -71,6 +95,18 @@ class Network {
             currentActivation = currentLayer.forward(currentActivation);
         }
         return currentActivation;
+    }
+
+    /**
+    *   Return the chromosomic representation of the network
+    *   Chromosome = Array[weights of layer k as Array, bias of layer k as Array], k from input to output;
+    */
+    get chromosome(){
+        let chrom = [];
+        for(let layer of this._layers){
+            chrom.push(layer.chromosome);
+        }
+        return chrom;
     }
 
     static sigmoid(a){

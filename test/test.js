@@ -33,11 +33,13 @@ let net1 = new Network(2, 3, 3);
 let dataFeed = [1,1];
 let dataOut = net1.forward(dataFeed);
 console.log('Random network out', dataOut);
+console.log('chromosome', net1.chromosome);
 
 let net2 = new Network(3, 1, 6, [12, 4]);
 let dataFeed2 = [1,1,-3];
 let dataOut2 = net2.forward(dataFeed2);
 console.log('Random complex network out', dataOut2);
+console.log('chromosome', net2.chromosome);
 
 let net3 = new Network(12, 1);
 let dataFeed3 = [1, 1, -3,
@@ -46,3 +48,10 @@ let dataFeed3 = [1, 1, -3,
                 3, -4, 0];
 let dataOut3 = net3.forward(dataFeed3);
 console.log('Random single perceptron', dataOut3);
+console.log('chromosome', net3.chromosome);
+
+//Rebuild from chromosome
+let chrom1 = net1.chromosome;
+let net1Bis = new Network(2, 3, 3, [], chrom1);
+let dataOut1Bis = net1Bis.forward(dataFeed);
+console.log('Reproduce network 1', dataOut1Bis);

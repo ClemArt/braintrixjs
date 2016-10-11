@@ -38,6 +38,10 @@ class Matrix {
         }
     }
 
+    get val(){
+        return this._values;
+    }
+
     static randomMatrix(n,m){
         let output = [];
         for(let i=0; i<m*n; i++){
@@ -93,6 +97,10 @@ class Vector {
 
     get length(){
         return this._values.length;
+    }
+
+    get val(){
+        return this._values;
     }
 
     checkVectorLength(vector){
