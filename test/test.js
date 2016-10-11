@@ -24,6 +24,12 @@ let v1 = new Vector([1,1]);
 let cross = v1.dot(v1);
 console.log('Dot vectors', cross);
 
+//Hadamard product
+let vh1 = new Vector([2,3]);
+let vh2 = new Vector([4,5]);
+let hadamard = vh1.hadamard(vh2);
+console.log('Hadamard vectors', hadamard);
+
 let m1 = new Matrix(2,2,[1,1,1,1]);
 cross = m1.dot(v1);
 console.log('Dot matrix & vector', cross);

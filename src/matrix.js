@@ -85,6 +85,21 @@ class Vector {
         return this;
     }
 
+    /**
+    *   Hadamard product of 2 vectors, also called Elementwise product
+    */
+    hadamard(vector){
+        vector = Vector.convertInput(vector);
+        this.checkVectorLength(vector);
+
+        let output = [];
+        for(let i=0; i<this.length; i++){
+            output.push(this.v(i) * vector.v(i));
+        }
+
+        return new Vector(output);
+    }
+
     v(i){
         return this._values[i];
     }
