@@ -73,5 +73,6 @@ let netBack1 = new Network(2, 3, 3);
 let backIn = [1,2];
 let backOut = [0.5, 0.1, 0.3];
 let outBack1 = netBack1.forward(backIn);
+debugger;
 let error1 = netBack1.backpropagate(backIn, backOut);
 console.log('Backpropagate one sample', outBack1, error1);

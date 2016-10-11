@@ -107,6 +107,7 @@ class Network {
     *   expected: Array[Number] or Vector, expected output of the training sample
     */
     backpropagate(input, expected){
+        input = Vector.convertInput(input);
         expected = Vector.convertInput(expected);
         let L = this._layers.length;
         let deltas = [];
@@ -131,7 +132,33 @@ class Network {
             deltas.push(currentError.hadamard(currentActiPrime));
         }
 
-        return deltas;
+        deltas.reverse();
+
+        let biasDiff = [];
+        let weightDiff = [];
+
+        biasDiff.push(deltas[0]);
+        let M = input.length;
+        let N = deltas[0].length
+        let w = [];
+        for(let k=0; k<M*N; k++){
+            w.push(input.v(k % M) * deltas[0].v(Math.floor(k/M)));
+        }
+        weightDiff.push(new Matrix(N,M,w));
+
+        for(let ii=1; ii<L; ii++){
+            biasDiff.push(deltas[ii]);
+            let previousLayer = this._layers[ii-1];
+            let M = previousLayer._activation.length;
+            let N = deltas[ii].length
+            w = [];
+            for(let k=0; k<M*N; k++){
+                w.push(previousLayer._activation.v(k % M) * deltas[ii].v(Math.floor(k/M)));
+            }
+            weightDiff.push(new Matrix(N,M,w));
+        }
+
+        return [weightDiff, biasDiff];
     }
 
     /**
@@ -141,7 +168,15 @@ class Network {
     *   repeat: Integer (default 1) Number of repetitions over the batch of samples (multiple pass)
     */
     learnBatch(samples, learningRate=0.1, repeat=1){
-        
+        while(repeat){
+            repeat--;
+            for(let sample of samples){
+                let input = sample[0];
+                let expected = sample[1];
+
+
+            }
+        }
     }
 
     /**

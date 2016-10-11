@@ -91,6 +91,15 @@ class Vector {
         return new Vector(output);
     }
 
+    mult(num){
+        let output = [];
+        for(let i=0; i<this.length; i++){
+            output.push(this.v(i) * num);
+        }
+
+        return new Vector(output);
+    }
+
     /**
     *   Apply a function to all elements of the vector
     */
