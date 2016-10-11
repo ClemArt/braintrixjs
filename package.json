@@ -4,7 +4,7 @@
   "description": "A simple matrix neural network",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/ClemArt/braintrixjs/issues"
   },
-  "homepage": "https://github.com/ClemArt/braintrixjs#readme"
+  "homepage": "https://github.com/ClemArt/braintrixjs#readme",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
 }
