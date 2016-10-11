@@ -38,6 +38,14 @@ class Matrix {
         }
     }
 
+    static randomMatrix(n,m){
+        let output = [];
+        for(let i=0; i<m*n; i++){
+            output.push(Math.random());
+        }
+        return new Matrix(n,m,output);
+    }
+
 }
 
 class Vector {
@@ -69,6 +77,16 @@ class Vector {
         return new Vector(output);
     }
 
+    /**
+    *   Apply a function to all elements of the vector
+    */
+    apply(func){
+        for(let i=0; i<this.length; i++){
+            this._values[i] = func(this.v(i));
+        }
+        return this;
+    }
+
     v(i){
         return this._values[i];
     }
@@ -81,6 +99,14 @@ class Vector {
         if(this.length !== vector.length){
             throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;
         }
+    }
+
+    static randomVector(n){
+        let output = [];
+        for(let i=0; i<n; i++){
+            output.push(Math.random());
+        }
+        return new Vector(output);
     }
 
     static convertInput(values){
