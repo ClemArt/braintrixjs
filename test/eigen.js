@@ -1,17 +1,17 @@
 let { Matrix, Vector } = require('../build/matrix');
 
-let m = new Matrix(3, 3, [1,1,4, 0,10,6, 0,0,2]);
-let rv = Vector.randomVector(3);
-let rvn = rv.mult(1/rv.norm);
+let m = new Matrix(4, 4, [1,0,0,0, 0,10,0,0, 0,0,2,0, 0,0,0,6]);
 
 let gramscmhidt = [];
 let values = [];
 
-for(let kk=0; kk<3; kk++){
+for(let kk=0; kk<4; kk++){
 
     let i=0;
     let prevNorm = 0;
-
+    let rv = Vector.randomVector(4);
+    let rvn = rv.mult(1/rv.norm);
+    
     while(i <= 1000 && Math.abs(prevNorm - rv.norm) > 0.0000001){
         prevNorm = rv.norm;
         rv = m.dot(rvn);
@@ -33,3 +33,4 @@ for(let kk=0; kk<3; kk++){
 }
 
 console.log('Values ', values);
+console.log('Schmidt ', gramscmhidt);
