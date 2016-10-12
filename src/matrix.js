@@ -177,6 +177,10 @@ class Vector {
         return this._values;
     }
 
+    get norm(){
+        return Math.sqrt(this.dot(this));
+    }
+
     checkVectorLength(vector){
         if(this.length !== vector.length){
             throw "Vector of dimension " + vector.length + ' does not match vector dimension ' + this.length;

@@ -30,6 +30,11 @@ let vadd2 = new Vector([2,3]);
 let addV12 = vadd1.add(vadd2);
 console.log('Add vectors', addV12);
 
+//Norm
+console.log('Norm of previous vects', vadd1.norm);
+console.log('Norm of previous vects', vadd2.norm);
+console.log('Norm 1 ', new Vector([1/1.4142, 1/1.4142]).norm);
+
 //dot product
 let v1 = new Vector([1,1]);
 let cross = v1.dot(v1);
