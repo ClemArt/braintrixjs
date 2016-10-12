@@ -10,7 +10,7 @@ class Matrix {
     }
 
     v(i,j){
-        return this._values[i * this._m + j];
+        return this.val[i * this._m + j];
     }
 
     /**
@@ -22,7 +22,7 @@ class Matrix {
 
         let output = [];
         for(let i=0; i<this._n; i++){
-            let row = new Vector(this._values.slice(i * this._m, (i+1) * this._m));
+            let row = new Vector(this.val.slice(i * this._m, (i+1) * this._m));
             output.push(row.dot(vector));
         }
 
@@ -59,6 +59,18 @@ class Matrix {
         return new Matrix(this._m, this._n, transposeValues);
     }
 
+    dotMat(matrix){
+        //Decompose the right matrix into an array of vectors
+        let vectors = [];
+        let tMatrix = matrix.transpose();
+        for(let i=0; i<matrix._m; i++){
+            let v = new Vector(tMatrix.val.slice(i * matrix._n, (i+1) * matrix._n));
+            vectors.push(...this.dot(v).val);
+        }
+        let out = new Matrix(matrix._m, this._n, vectors);
+        return out.transpose();
+    }
+
     checkVectorMult(vector){
         if(this._m !== vector.length){
             throw "Vector of dimension " + vector.length + ' does not match Matrix dimension ' + this._m;
@@ -76,7 +88,7 @@ class Matrix {
     }
 
     get length(){
-        return this._values.length;
+        return this.val.length;
     }
 
     static randomMatrix(n,m){
@@ -154,11 +166,11 @@ class Vector {
     }
 
     v(i){
-        return this._values[i];
+        return this.val[i];
     }
 
     get length(){
-        return this._values.length;
+        return this.val.length;
     }
 
     get val(){

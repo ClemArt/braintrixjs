@@ -19,6 +19,11 @@ let transposed = trans.transpose();
 console.log('Pretransposed Matrix', trans);
 console.log('Transposed Matrix', transposed);
 
+//Dot matrix
+let dotMatrix = new Matrix(2,2,[1,2,3,4]);
+let resultDotM = dotMatrix.dotMat(dotMatrix);
+console.log('Matrix multiplication', resultDotM);
+
 //Add vectors
 let vadd1 = new Vector([1,2]);
 let vadd2 = new Vector([2,3]);
