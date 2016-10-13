@@ -91,6 +91,31 @@ class Matrix {
         return this.val.length;
     }
 
+    /**
+    *   Console.log a prettyfy version of the matrix
+    */
+    pretty(){
+        let maxNumberLength = (''+this.max).length;
+        for(let i=0; i<this._n; i++){
+            let line = ' | ';
+            for(let j=0; j<this._m; j++){
+                let num = this.v(i,j) + '';
+                line += ' '.repeat(maxNumberLength - num.length) + num + ' | ';
+            }
+            console.log(line);
+        }
+    }
+
+    get max(){
+        return this.val.reduce((memo, v)=>{
+            if(Math.abs(v) > memo){
+                return Math.abs(v);
+            } else {
+                return memo;
+            }
+        }, 0)
+    }
+
     static randomMatrix(n,m){
         let output = [];
         for(let i=0; i<m*n; i++){
