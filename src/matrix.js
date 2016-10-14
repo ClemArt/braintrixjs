@@ -221,10 +221,11 @@ class Vector {
     /**
     *   Returns the "truncated" version of the vector
     *   All coordinates smaller than epsilon are set to 0
+    *   All coordinates are truncated to epsilon precison
     */
     trunc(epsilon){
         return new Vector(this.val.map((v) => {
-            return Math.abs(v) < epsilon ? 0 : v;
+            return Math.abs(v) < epsilon ? 0 : Math.trunc(v / epsilon) * epsilon;
         }))
     }
 
