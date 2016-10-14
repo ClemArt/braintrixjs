@@ -95,7 +95,7 @@ class Matrix {
     *   Console.log a prettyfy version of the matrix
     */
     pretty(){
-        let maxNumberLength = (''+this.max).length;
+        let maxNumberLength = this.maxDisplayLength;
         for(let i=0; i<this._n; i++){
             let line = ' | ';
             for(let j=0; j<this._m; j++){
@@ -110,6 +110,16 @@ class Matrix {
         return this.val.reduce((memo, v)=>{
             if(Math.abs(v) > memo){
                 return Math.abs(v);
+            } else {
+                return memo;
+            }
+        }, 0)
+    }
+
+    get maxDisplayLength(){
+        return this.val.reduce((memo, v)=>{
+            if((v+'').length > memo){
+                return (v+'').length;
             } else {
                 return memo;
             }
