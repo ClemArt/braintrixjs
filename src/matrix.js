@@ -190,6 +190,34 @@ class Vector {
         return new Vector(output);
     }
 
+    /**
+    *   Returns the "positive" version of the vector
+    *   Positive version always have the first non nul coordinates >= 0
+    */
+    posit(i=0){
+        if(this.v(i) > 0){
+            return this.mult(1);
+        } else if(this.v(i) < 0) {
+            return this.mult(-1);
+        } else {
+            if((i+1) < this.length){
+                return this.posit(i+1);
+            } else {
+                return return this.mult(1);
+            }
+        }
+    }
+
+    /**
+    *   Returns the "truncated" version of the vector
+    *   All coordinates smaller than epsilon are set to 0
+    */
+    trunc(epsilon){
+        return new Vector(vector.val.map((v) => {
+            return Math.abs(v) < epsilon ? 0 : v;
+        }))
+    }
+
     v(i){
         return this.val[i];
     }
