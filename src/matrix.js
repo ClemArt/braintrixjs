@@ -213,7 +213,7 @@ class Vector {
             if((i+1) < this.length){
                 return this.posit(i+1);
             } else {
-                return return this.mult(1);
+                return this.mult(1);
             }
         }
     }
