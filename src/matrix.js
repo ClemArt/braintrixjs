@@ -213,7 +213,7 @@ class Vector {
     *   All coordinates smaller than epsilon are set to 0
     */
     trunc(epsilon){
-        return new Vector(vector.val.map((v) => {
+        return new Vector(this.val.map((v) => {
             return Math.abs(v) < epsilon ? 0 : v;
         }))
     }
