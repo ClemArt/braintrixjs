@@ -94,13 +94,17 @@ class Matrix {
     /**
     *   Console.log a prettyfy version of the matrix
     */
-    pretty(){
-        let maxNumberLength = this.maxDisplayLength;
+    pretty(K){
+        let maxNumberLength = K ? K : this.maxDisplayLength;
         for(let i=0; i<this._n; i++){
             let line = ' | ';
             for(let j=0; j<this._m; j++){
                 let num = this.v(i,j) + '';
-                line += ' '.repeat(maxNumberLength - num.length) + num + ' | ';
+                if(num.length <= maxNumberLength){
+                    line += ' '.repeat(maxNumberLength - num.length) + num + ' | ';
+                } else {
+                    line += num.substr(0, maxNumberLength) + ' | ';
+                }
             }
             console.log(line);
         }
